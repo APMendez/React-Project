@@ -1,27 +1,40 @@
-import React from 'react'
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import Button from '@mui/material/Button';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import image from '../src/img/cart-widget.png';
+
+//COMPONENTS
+import CartWidget from './components/cart';
+import NavbarContainer from './components/navbarContainer';
+
+
+//PAGES
+import Inicio from "./pages/Inicio";
+import Conocenos from "./pages/Conocenos";
+import Contacto from "./pages/Contacto";
+import PlantDetail from './pages/plantDetail';
+import Cart from './pages/Cart';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Button variant="contained">Hello World</Button>
+    <BrowserRouter>
+      <div className="App">
+        <NavbarContainer logo={"APICAL"}>
+          <CartWidget amount={"0"} style={{backgroundImage: image}}/>
+        </NavbarContainer>
+        
+        <Routes>
+          <Route path="/" element={<Inicio/>} />
+          <Route path="/conocenos" element={<Conocenos/>} />
+          <Route path="/contacto" element={<Contacto/>} />
+          <Route path='/detail/:id' element={<PlantDetail/>} />
+          <Route path='/cart' element={<Cart/>}/>
+        </Routes>  
     </div>
+    </BrowserRouter>
+    
   );
 }
 

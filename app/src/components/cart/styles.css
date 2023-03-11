@@ -1,0 +1,11 @@
+.cart{
+    width: 3vw;
+    height: 3vw;
+    background-image: url(../../img/cart-widget.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

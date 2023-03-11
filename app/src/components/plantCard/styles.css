@@ -1,0 +1,14 @@
+.plantCardDiv{
+    width: 15vw;
+    justify-self: center;
+    font-size: 0.5rem;
+}
+.plantCardDiv>img{
+    width: 100%;
+}
+.plantCardDiv>h1{
+    color: rgb(160, 12, 12);
+}
+.plantCardDiv>h1>span{
+    text-decoration: underline;
+}

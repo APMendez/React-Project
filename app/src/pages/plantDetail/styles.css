@@ -1,0 +1,14 @@
+    .plantDetailDiv{
+        width: 15vw;
+        justify-self: center;
+        font-size: 0.5rem;
+    }
+    .plantDetailDiv>img{
+        width: 100%;
+    }
+    .plantDetailDiv>h1{
+        color: rgb(160, 12, 12);
+    }
+    .plantDetailDiv>h1>span{
+        text-decoration: underline;
+    }
