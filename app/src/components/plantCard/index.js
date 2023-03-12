@@ -6,18 +6,18 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import "./styles.css";
 
-const PlantCard = ({prods}) => {
+const PlantCard = ({prod}) => {
     return(
         <div className="plantCardDiv">
             <Card sx={{ maxWidth: 345, m: 4 }}>
                 <CardActionArea>
-                    <CardMedia component="img" image={prods.img} alt="green iguana" />
+                    <CardMedia component="img" image={prod.img} alt="green iguana" />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {prods.nombre}
+                        {prod.nombre}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        ${prods.precio}
+                        Precio: ${prod.precio}
                     </Typography>
                     </CardContent>
                 </CardActionArea>
