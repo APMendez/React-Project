@@ -39,6 +39,9 @@ const Cart = () => {
         setPurchaseID(docRef.id);
         setValues(initialState);
     };
+    const clearData = () => {
+        cart.length=0
+    }
 
     const [cart, setCart] = useContext(CartContext);
 
@@ -53,32 +56,32 @@ const Cart = () => {
 
     return (
         <div style={styles.containerShop}>
-            <h1>Shop</h1>
-            <form className="FormContainer" onSubmit={handleOnSubmit}>
+            <h1>Carrito de compras</h1>
+            <form className="FormContainer" onSubmit={handleOnSubmit} style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                 <TextField
-                    placeholder="Name"
+                    placeholder="Nombre"
                     style={{ margin: 10, width: 400 }}
                     name="name"
                     value={values.name}
                     onChange={handleOnChange}
                 />
                 <TextField
-                    placeholder="Last Name"
+                    placeholder="Apellido"
                     style={{ margin: 10, width: 400 }}
                     name="lastName"
                     value={values.lastName}
                     onChange={handleOnChange}
                 />
                 <TextField
-                    placeholder="City"
+                    placeholder="Direccion"
                     style={{ margin: 10, width: 400 }}
                     name="city"
                     value={values.city}
                     onChange={handleOnChange}
                 />
-                <div>Items in cart: {quantity}</div>
-                <div>Total: ${totalPrice}</div>
-                <button className="btnASendAction" type="submit">Send</button>
+                <div style={{margin:15}}>Cantidad de items: {quantity}</div>
+                <div style={{margin:15}}>Total: ${totalPrice}</div>
+                <button className="btnASendAction" onClick={clearData} style={{margin:15, padding:8}}>Confirmar compra</button>
             </form>
             {purchaseID ? <MessageSuccess purchaseID={purchaseID} /> : null}
         </div>

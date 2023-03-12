@@ -29,21 +29,16 @@ const ItemListContainer = () => {
     <main className='itemListContainer'>
         {prods.map((prod) => {
             return (
-            <div>
                 <Link
                 to={`detail/${prod.id}`}
                 style={{ textDecoration: "none" }}
                 key={prod.id}>
                     <PlantCard img={prod.img} nombre={prod.nombre} precio={prod.precio} id={prod.id} />
                 </Link>
-            </div>
-            
             );
         })}        
     </main>
     )
 }
 
-export default ItemListContainer
-
-
+export default ItemListContainer;

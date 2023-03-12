@@ -1,10 +1,14 @@
 import React, {useContext} from "react";
+import { Link } from "react-router-dom";
+//MUI
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
+//Context
 import { CartContext } from "../../context/cartContext";
+//Style
 import "./styles.css";
 
 const PlantCard = ({img, nombre, precio, id }) => {
@@ -53,27 +57,27 @@ const PlantCard = ({img, nombre, precio, id }) => {
         <div className="plantCardDiv">
             <Card sx={{ maxWidth: 345, m: 4 }}>
                 <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        image={img}
-                        alt="green iguana"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {nombre}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Precio: ${precio}
-                        </Typography>
-                    </CardContent>
+                        <CardMedia
+                            component="img"
+                            image={img}
+                            alt="green iguana"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {nombre}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Precio: ${precio}
+                            </Typography>
+                        </CardContent>
                     {quantityPerItem === 0 ? (
                         <button
                             className="item-add-button"
                             onClick={() => addToCart()}
-                            style={{zIndex:10000}}
+                            style={{zIndex:10000, padding:8, margin:15}}
                             type="button"
                         >
-                            + Add to cart
+                            Añadir al carrito
                         </button>
                     ) : (
                         <button
@@ -82,7 +86,7 @@ const PlantCard = ({img, nombre, precio, id }) => {
                             style={{zIndex:100000}}
                             type="button"
                         >
-                            + add more
+                            + Añadir otra unidad
                         </button>
                     )}
 
@@ -93,7 +97,7 @@ const PlantCard = ({img, nombre, precio, id }) => {
                             style={{zIndex:10000}}
                             type="button"
                         >
-                            subtract item
+                            Eliminar del carrito
                         </button>
                     )}
                 </CardActionArea>
@@ -101,5 +105,6 @@ const PlantCard = ({img, nombre, precio, id }) => {
         </div>
     );
 };
+
 
 export default PlantCard;
