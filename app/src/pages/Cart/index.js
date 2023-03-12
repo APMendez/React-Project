@@ -1,20 +1,12 @@
-/*import React from 'react';
-
-const Cart = ()=>{
-    return(
-        <h1 style={{color:"rgb(160, 12, 12)"}}>¡Proximamente podrás utilizar nuestro carrito de compras!</h1>
-    );
-};
-
-export default Cart; */
-
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
+//Context
+import { CartContext } from "../../context/cartContext";
 // Firebase
 import { db } from "../../firebase/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 
 import TextField from "@mui/material/TextField";
+import Button from '@mui/material/Button';
 import MessageSuccess from "../../components/MessageSucess/MessageSuccess";
 
 const styles = {
@@ -27,14 +19,12 @@ const styles = {
 const initialState = {
     name: "",
     lastName: "",
-    city: "",
+    city: ""
 };
 
-const Shop = () => {
+const Cart = () => {
     const [values, setValues] = useState(initialState);
     const [purchaseID, setPurchaseID] = useState("");
-
-    // console.log(purchaseID);
 
     const handleOnChange = (e) => {
         const { value, name } = e.target;
@@ -43,14 +33,23 @@ const Shop = () => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        // Add a new document with a generated id.
         const docRef = await addDoc(collection(db, "purchases"), {
-            values,
+            values, quantity: {quantity}, total:{totalPrice}
         });
-        // console.log("Document written with ID: ", docRef.id);
         setPurchaseID(docRef.id);
         setValues(initialState);
     };
+
+    const [cart, setCart] = useContext(CartContext);
+
+    const quantity = cart.reduce((acc, curr) => {
+        return acc + curr.quantity;
+    }, 0);
+
+    const totalPrice = cart.reduce(
+        (acc, curr) => acc + curr.quantity * curr.precio,
+        0
+    );
 
     return (
         <div style={styles.containerShop}>
@@ -77,11 +76,13 @@ const Shop = () => {
                     value={values.city}
                     onChange={handleOnChange}
                 />
-                <button className="btnASendAction">Send</button>
+                <div>Items in cart: {quantity}</div>
+                <div>Total: ${totalPrice}</div>
+                <button className="btnASendAction" type="submit">Send</button>
             </form>
             {purchaseID ? <MessageSuccess purchaseID={purchaseID} /> : null}
         </div>
     );
 };
 
-export default Shop;
+export default Cart;

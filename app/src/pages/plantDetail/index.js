@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PlantCard from "../../components/plantCard";
 import "./styles.css"
 //FIREBASE
 import {collection, query, getDocs, where, documentId} from "firebase/firestore";
